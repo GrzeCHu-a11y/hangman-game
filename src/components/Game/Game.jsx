@@ -15,7 +15,6 @@ const Game = () => {
   });
 
   const getRandomWord = () => {
-    //get random word
     const { word, hint } = wordList[Math.floor(Math.random() * wordList.length)];
 
     //set missing letters
@@ -27,16 +26,17 @@ const Game = () => {
   };
 
   const getPressedLetter = (letter) => {
-    setData((prevData) => ({ ...prevData, pressedLetters: [...prevData.pressedLetters, letter] }));
+    setData((prevData) => ({ ...prevData, pressedLetters: [...prevData.pressedLetters, letter.toLowerCase()] }));
   };
 
   useEffect(() => {
     getRandomWord();
   }, []);
 
-  useEffect(() => {
-    console.log(data.pressedLetters);
-  }, [data.pressedLetters]);
+  // useEffect(() => {
+  //   console.log(data.pressedLetters);
+  //   console.log(data.missingLetters);
+  // }, [data.pressedLetters]);
 
   return (
     <div className="container">
@@ -44,7 +44,7 @@ const Game = () => {
         <Hangman />
       </div>
       <div>
-        <WordDisplay />
+        <WordDisplay missingLetters={data.missingLetters} word={data.word} pressedLetters={data.pressedLetters} />
         <Hints />
         <Keyboard fun={getPressedLetter} />
       </div>
