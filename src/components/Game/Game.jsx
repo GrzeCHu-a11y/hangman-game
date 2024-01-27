@@ -26,13 +26,17 @@ const Game = () => {
     setData((prevData) => ({ ...prevData, word: word, hint: hint, missingLetters: missingLetters }));
   };
 
+  const getPressedLetter = (letter) => {
+    setData((prevData) => ({ ...prevData, pressedLetters: [...prevData.pressedLetters, letter] }));
+  };
+
   useEffect(() => {
     getRandomWord();
   }, []);
 
   useEffect(() => {
-    console.log(data.missingLetters, data.word);
-  }, [data.missingLetters != ""]);
+    console.log(data.pressedLetters);
+  }, [data.pressedLetters]);
 
   return (
     <div className="container">
@@ -42,7 +46,7 @@ const Game = () => {
       <div>
         <WordDisplay />
         <Hints />
-        <Keyboard />
+        <Keyboard fun={getPressedLetter} />
       </div>
     </div>
   );

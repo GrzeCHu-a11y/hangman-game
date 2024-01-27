@@ -1,10 +1,10 @@
 import React from "react";
 
-const Keyboard = () => {
+const Keyboard = ({ fun }) => {
   return (
     <div className="keyboard">
-      <button>Q</button>
-      <button>W</button>
+      <button onClick={(e) => fun(e.target.innerHTML)}>Q</button>
+      <button onClick={(e) => fun(e.target.innerHTML)}>W</button>
       <button>E</button>
       <button>R</button>
       <button>T</button>
