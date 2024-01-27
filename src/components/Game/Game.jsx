@@ -29,14 +29,22 @@ const Game = () => {
     setData((prevData) => ({ ...prevData, pressedLetters: [...prevData.pressedLetters, letter.toLowerCase()] }));
   };
 
+  // check win or lose
+  useEffect(() => {
+    if (data.pressedLetters.length > 0) {
+      const missingLettersSet = new Set(data.missingLetters);
+      const pressedLettersSet = new Set(data.pressedLetters);
+      const allMissingLettersInPressed = [...missingLettersSet].every((letter) => pressedLettersSet.has(letter));
+
+      if (allMissingLettersInPressed) {
+        console.log("all letters guessed");
+      }
+    }
+  }, [data.pressedLetters]);
+
   useEffect(() => {
     getRandomWord();
   }, []);
-
-  // useEffect(() => {
-  //   console.log(data.pressedLetters);
-  //   console.log(data.missingLetters);
-  // }, [data.pressedLetters]);
 
   return (
     <div className="container">
