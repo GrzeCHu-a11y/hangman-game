@@ -5,7 +5,7 @@ import Keyboard from "../Keyboard/Keyboard";
 import Hints from "../Hints/Hints";
 
 const Game = () => {
-  return <div></div>;
+  return <div className="container"></div>;
 };
 
 export default Game;
