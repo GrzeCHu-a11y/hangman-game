@@ -9,7 +9,8 @@ const Game = () => {
   const [data, setData] = useState({
     word: "",
     hint: "",
-    win: false,
+    wins: 0,
+    mistakes: 0,
     pressedLetters: [],
     missingLetters: [],
   });
@@ -27,20 +28,37 @@ const Game = () => {
 
   const getPressedLetter = (letter) => {
     setData((prevData) => ({ ...prevData, pressedLetters: [...prevData.pressedLetters, letter.toLowerCase()] }));
+    //set misatke if letter is wrong
+    data.missingLetters.includes(letter.toLowerCase()) ? "" : (data.mistakes += 1);
   };
 
-  // check win or lose
+  // check if the clicked letters match the hidden ones
   useEffect(() => {
     if (data.pressedLetters.length > 0) {
       const missingLettersSet = new Set(data.missingLetters);
       const pressedLettersSet = new Set(data.pressedLetters);
       const allMissingLettersInPressed = [...missingLettersSet].every((letter) => pressedLettersSet.has(letter));
 
+      //do it when allMissingLettersIsPressed
       if (allMissingLettersInPressed) {
-        console.log("all letters guessed");
+        data.wins += 1;
+        resetData();
+        getRandomWord();
+      }
+
+      //do it when misatkes is more than 6
+      if (data.mistakes === 6) {
+        alert("Game over");
+        data.wins = 0;
+        resetData();
+        getRandomWord();
       }
     }
   }, [data.pressedLetters]);
+
+  const resetData = () => {
+    setData((prevState) => ({ ...prevState, pressedLetters: [], missingLetters: [], mistakes: 0 }));
+  };
 
   useEffect(() => {
     getRandomWord();
@@ -53,7 +71,7 @@ const Game = () => {
       </div>
       <div>
         <WordDisplay missingLetters={data.missingLetters} word={data.word} pressedLetters={data.pressedLetters} />
-        <Hints />
+        <Hints mistakes={data.mistakes} hint={data.hint} />
         <Keyboard fun={getPressedLetter} />
       </div>
     </div>
