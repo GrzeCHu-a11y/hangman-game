@@ -15,13 +15,24 @@ const Game = () => {
   });
 
   const getRandomWord = () => {
+    //get random word
     const { word, hint } = wordList[Math.floor(Math.random() * wordList.length)];
-    setData({ word: word, hint: hint });
+
+    //set missing letters
+    const missingLetters = word
+      .split("")
+      .filter((_, index) => index % 2 === 0)
+      .join("");
+    setData((prevData) => ({ ...prevData, word: word, hint: hint, missingLetters: missingLetters }));
   };
 
   useEffect(() => {
     getRandomWord();
   }, []);
+
+  useEffect(() => {
+    console.log(data.missingLetters, data.word);
+  }, [data.missingLetters != ""]);
 
   return (
     <div className="container">
