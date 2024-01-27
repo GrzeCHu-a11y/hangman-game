@@ -11,6 +11,7 @@ const Game = () => {
     hint: "",
     wins: 0,
     mistakes: 0,
+    hangamnImg: 0,
     pressedLetters: [],
     missingLetters: [],
   });
@@ -21,7 +22,7 @@ const Game = () => {
     //set missing letters
     const missingLetters = word
       .split("")
-      .filter((_, index) => index % 2 === 0)
+      .filter((_, index) => index % 3 === 0)
       .join("");
     setData((prevData) => ({ ...prevData, word: word, hint: hint, missingLetters: missingLetters }));
   };
@@ -29,7 +30,13 @@ const Game = () => {
   const getPressedLetter = (letter) => {
     setData((prevData) => ({ ...prevData, pressedLetters: [...prevData.pressedLetters, letter.toLowerCase()] }));
     //set misatke if letter is wrong
-    data.missingLetters.includes(letter.toLowerCase()) ? "" : (data.mistakes += 1);
+    data.missingLetters.includes(letter.toLowerCase())
+      ? ""
+      : setData((prevData) => ({
+          ...prevData,
+          mistakes: prevData.mistakes + 1,
+          hangamnImg: prevData.hangamnImg + 1,
+        }));
   };
 
   // check if the clicked letters match the hidden ones
@@ -57,7 +64,7 @@ const Game = () => {
   }, [data.pressedLetters]);
 
   const resetData = () => {
-    setData((prevState) => ({ ...prevState, pressedLetters: [], missingLetters: [], mistakes: 0 }));
+    setData((prevState) => ({ ...prevState, pressedLetters: [], missingLetters: [], mistakes: 0, hangamnImg: 0 }));
   };
 
   useEffect(() => {
@@ -67,7 +74,7 @@ const Game = () => {
   return (
     <div className="container">
       <div>
-        <Hangman />
+        <Hangman imgNum={data.hangamnImg} />
       </div>
       <div>
         <WordDisplay missingLetters={data.missingLetters} word={data.word} pressedLetters={data.pressedLetters} />

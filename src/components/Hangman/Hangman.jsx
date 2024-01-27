@@ -1,9 +1,9 @@
 import React from "react";
 
-const Hangman = () => {
+const Hangman = ({ imgNum }) => {
   return (
     <div>
-      <img src="/hangman-0.svg" alt="img" />
+      <img src={`hangman-${imgNum}.svg`} alt="img" />
     </div>
   );
 };
