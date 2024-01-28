@@ -41,10 +41,38 @@ body {
     padding: 30px 0;
 }
 
-button {
-    font-size: 1.5rem;
+.kb-btn {
+    font-size: 1.3rem;
     padding: 8px;
     background-color: rgb(243, 255, 255);
+    border: 2px solid black;
+    cursor: pointer;
+}
+
+.popup {
+    width: 70vw;
+    height: 80vh;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 40px;
+    transform: translate(-50%, -50%);
+    background-color: rgb(243, 255, 255);
+}
+
+.red-word {
+    color: red;
+}
+
+.popup-btn {
+    font-size: 1.3rem;
+    padding: 5px;
+    background-color: rgb(221, 221, 57);
     border: 2px solid black;
     cursor: pointer;
 }
