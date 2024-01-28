@@ -4,12 +4,11 @@ const Hints = ({ mistakes, hint }) => {
   return (
     <div>
       <h3>
-        Hint:
-        <b>{hint}</b>
+        Hint: <span>{hint}</span>
       </h3>
+      <br />
       <h3>
-        Inccorect guesses:
-        <b>{mistakes}/6</b>
+        Inccorect guesses: <span className="red-word">{mistakes}/6</span>
       </h3>
     </div>
   );

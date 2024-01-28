@@ -3,9 +3,11 @@ import Hangman from "../Hangman/Hangman";
 import WordDisplay from "../WordDisplay/WordDisplay";
 import Keyboard from "../Keyboard/Keyboard";
 import Hints from "../Hints/Hints";
+import Popup from "../Popup/Popup";
 import { wordList } from "../../words/wordList";
 
 const Game = () => {
+  const [popupVisible, setPopup] = useState(false);
   const [data, setData] = useState({
     word: "",
     hint: "",
@@ -62,16 +64,22 @@ const Game = () => {
 
       //do it when misatkes is more than 6
       if (data.mistakes === 6) {
-        alert("Game over");
         data.wins = 0;
-        resetData();
-        getRandomWord();
+        setPopup(true);
+        console.log(popupVisible);
       }
     }
   }, [data.pressedLetters]);
 
   const resetData = () => {
-    setData((prevState) => ({ ...prevState, pressedLetters: [], missingLetters: [], mistakes: 0, hangamnImg: 0, disabledButtons: [] }));
+    setData((prevState) => ({
+      ...prevState,
+      pressedLetters: [],
+      missingLetters: [],
+      mistakes: 0,
+      hangamnImg: 0,
+      disabledButtons: [],
+    }));
   };
 
   useEffect(() => {
@@ -80,6 +88,7 @@ const Game = () => {
 
   return (
     <div className="container">
+      {popupVisible === true ? <Popup word={data.word} resetData={resetData} setPopup={setPopup} getRandomWord={getRandomWord} /> : ""}
       <div>
         <Hangman imgNum={data.hangamnImg} />
       </div>
