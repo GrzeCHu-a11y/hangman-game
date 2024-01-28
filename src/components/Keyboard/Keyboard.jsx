@@ -1,34 +1,86 @@
 import React from "react";
 
-const Keyboard = ({ fun }) => {
+const Keyboard = ({ fun, disabledButtons }) => {
   return (
     <div className="keyboard">
-      <button onClick={(e) => fun(e.target.innerHTML)}>Q</button>
-      <button onClick={(e) => fun(e.target.innerHTML)}>W</button>
-      <button onClick={(e) => fun(e.target.innerHTML)}>E</button>
-      <button onClick={(e) => fun(e.target.innerHTML)}>R</button>
-      <button onClick={(e) => fun(e.target.innerHTML)}>T</button>
-      <button onClick={(e) => fun(e.target.innerHTML)}>Y</button>
-      <button onClick={(e) => fun(e.target.innerHTML)}>U</button>
-      <button onClick={(e) => fun(e.target.innerHTML)}>I</button>
-      <button onClick={(e) => fun(e.target.innerHTML)}>O</button>
-      <button onClick={(e) => fun(e.target.innerHTML)}>P</button>
-      <button onClick={(e) => fun(e.target.innerHTML)}>A</button>
-      <button onClick={(e) => fun(e.target.innerHTML)}>S</button>
-      <button onClick={(e) => fun(e.target.innerHTML)}>D</button>
-      <button onClick={(e) => fun(e.target.innerHTML)}>F</button>
-      <button onClick={(e) => fun(e.target.innerHTML)}>G</button>
-      <button onClick={(e) => fun(e.target.innerHTML)}>H</button>
-      <button onClick={(e) => fun(e.target.innerHTML)}>J</button>
-      <button onClick={(e) => fun(e.target.innerHTML)}>K</button>
-      <button onClick={(e) => fun(e.target.innerHTML)}>L</button>
-      <button onClick={(e) => fun(e.target.innerHTML)}>Z</button>
-      <button onClick={(e) => fun(e.target.innerHTML)}>X</button>
-      <button onClick={(e) => fun(e.target.innerHTML)}>C</button>
-      <button onClick={(e) => fun(e.target.innerHTML)}>V</button>
-      <button onClick={(e) => fun(e.target.innerHTML)}>B</button>
-      <button onClick={(e) => fun(e.target.innerHTML)}>N</button>
-      <button onClick={(e) => fun(e.target.innerHTML)}>M</button>
+      <button onClick={(e) => fun(e.target.innerHTML)} disabled={disabledButtons.includes("Q")}>
+        Q
+      </button>
+      <button onClick={(e) => fun(e.target.innerHTML)} disabled={disabledButtons.includes("W")}>
+        W
+      </button>
+      <button onClick={(e) => fun(e.target.innerHTML)} disabled={disabledButtons.includes("E")}>
+        E
+      </button>
+      <button onClick={(e) => fun(e.target.innerHTML)} disabled={disabledButtons.includes("R")}>
+        R
+      </button>
+      <button onClick={(e) => fun(e.target.innerHTML)} disabled={disabledButtons.includes("T")}>
+        T
+      </button>
+      <button onClick={(e) => fun(e.target.innerHTML)} disabled={disabledButtons.includes("Y")}>
+        Y
+      </button>
+      <button onClick={(e) => fun(e.target.innerHTML)} disabled={disabledButtons.includes("U")}>
+        U
+      </button>
+      <button onClick={(e) => fun(e.target.innerHTML)} disabled={disabledButtons.includes("I")}>
+        I
+      </button>
+      <button onClick={(e) => fun(e.target.innerHTML)} disabled={disabledButtons.includes("O")}>
+        O
+      </button>
+      <button onClick={(e) => fun(e.target.innerHTML)} disabled={disabledButtons.includes("P")}>
+        P
+      </button>
+      <button onClick={(e) => fun(e.target.innerHTML)} disabled={disabledButtons.includes("A")}>
+        A
+      </button>
+      <button onClick={(e) => fun(e.target.innerHTML)} disabled={disabledButtons.includes("S")}>
+        S
+      </button>
+      <button onClick={(e) => fun(e.target.innerHTML)} disabled={disabledButtons.includes("D")}>
+        D
+      </button>
+      <button onClick={(e) => fun(e.target.innerHTML)} disabled={disabledButtons.includes("F")}>
+        F
+      </button>
+      <button onClick={(e) => fun(e.target.innerHTML)} disabled={disabledButtons.includes("G")}>
+        G
+      </button>
+      <button onClick={(e) => fun(e.target.innerHTML)} disabled={disabledButtons.includes("H")}>
+        H
+      </button>
+      <button onClick={(e) => fun(e.target.innerHTML)} disabled={disabledButtons.includes("J")}>
+        J
+      </button>
+      <button onClick={(e) => fun(e.target.innerHTML)} disabled={disabledButtons.includes("K")}>
+        K
+      </button>
+      <button onClick={(e) => fun(e.target.innerHTML)} disabled={disabledButtons.includes("L")}>
+        L
+      </button>
+      <button onClick={(e) => fun(e.target.innerHTML)} disabled={disabledButtons.includes("Z")}>
+        Z
+      </button>
+      <button onClick={(e) => fun(e.target.innerHTML)} disabled={disabledButtons.includes("X")}>
+        X
+      </button>
+      <button onClick={(e) => fun(e.target.innerHTML)} disabled={disabledButtons.includes("C")}>
+        C
+      </button>
+      <button onClick={(e) => fun(e.target.innerHTML)} disabled={disabledButtons.includes("V")}>
+        V
+      </button>
+      <button onClick={(e) => fun(e.target.innerHTML)} disabled={disabledButtons.includes("B")}>
+        B
+      </button>
+      <button onClick={(e) => fun(e.target.innerHTML)} disabled={disabledButtons.includes("N")}>
+        N
+      </button>
+      <button onClick={(e) => fun(e.target.innerHTML)} disabled={disabledButtons.includes("M")}>
+        M
+      </button>
     </div>
   );
 };

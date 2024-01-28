@@ -14,6 +14,7 @@ const Game = () => {
     hangamnImg: 0,
     pressedLetters: [],
     missingLetters: [],
+    disabledButtons: [],
   });
 
   const getRandomWord = () => {
@@ -28,7 +29,13 @@ const Game = () => {
   };
 
   const getPressedLetter = (letter) => {
-    setData((prevData) => ({ ...prevData, pressedLetters: [...prevData.pressedLetters, letter.toLowerCase()] }));
+    setData((prevData) => ({
+      ...prevData,
+      pressedLetters: [...prevData.pressedLetters, letter.toLowerCase()],
+      //disable clicked button
+      disabledButtons: [...prevData.disabledButtons, letter],
+    }));
+
     //set misatke if letter is wrong
     data.missingLetters.includes(letter.toLowerCase())
       ? ""
@@ -64,7 +71,7 @@ const Game = () => {
   }, [data.pressedLetters]);
 
   const resetData = () => {
-    setData((prevState) => ({ ...prevState, pressedLetters: [], missingLetters: [], mistakes: 0, hangamnImg: 0 }));
+    setData((prevState) => ({ ...prevState, pressedLetters: [], missingLetters: [], mistakes: 0, hangamnImg: 0, disabledButtons: [] }));
   };
 
   useEffect(() => {
@@ -79,7 +86,7 @@ const Game = () => {
       <div>
         <WordDisplay missingLetters={data.missingLetters} word={data.word} pressedLetters={data.pressedLetters} />
         <Hints mistakes={data.mistakes} hint={data.hint} />
-        <Keyboard fun={getPressedLetter} />
+        <Keyboard fun={getPressedLetter} disabledButtons={data.disabledButtons} />
       </div>
     </div>
   );
