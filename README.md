@@ -1,3 +1,3 @@
-# Hangamn made in React
+# Hangman made in React
 
 version: 1.0
