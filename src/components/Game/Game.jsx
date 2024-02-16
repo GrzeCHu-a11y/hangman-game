@@ -5,6 +5,7 @@ import Keyboard from "../Keyboard/Keyboard";
 import Hints from "../Hints/Hints";
 import Popup from "../Popup/Popup";
 import { wordList } from "../../words/wordList";
+import Stats from "../Stats/Stats";
 
 const Game = () => {
   const [popupVisible, setPopup] = useState(false);
@@ -89,13 +90,16 @@ const Game = () => {
   return (
     <div className="container">
       {popupVisible === true ? <Popup word={data.word} resetData={resetData} setPopup={setPopup} getRandomWord={getRandomWord} /> : ""}
-      <div>
+      <div className="hangman-img-container">
         <Hangman imgNum={data.hangamnImg} />
       </div>
-      <div>
+      <div className="words-container">
         <WordDisplay missingLetters={data.missingLetters} word={data.word} pressedLetters={data.pressedLetters} />
         <Hints mistakes={data.mistakes} hint={data.hint} />
         <Keyboard fun={getPressedLetter} disabledButtons={data.disabledButtons} />
+      </div>
+      <div className="stats-container">
+        <Stats />
       </div>
     </div>
   );

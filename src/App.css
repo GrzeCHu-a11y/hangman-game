@@ -12,6 +12,7 @@ body {
     min-height: 100vh;
 }
 
+
 .container {
     width: 70vw;
     height: 80vh;
@@ -76,3 +77,4 @@ body {
     border: 2px solid black;
     cursor: pointer;
 }
+
