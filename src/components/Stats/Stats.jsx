@@ -2,12 +2,12 @@ import React from "react";
 
 const Stats = () => {
   return (
-    <div>
-      <h1>Stats</h1>
-      <h2>Wins: 10</h2>
-      <h2>lose: 10</h2>
-      <h2>current round</h2>
-      <h2>Score</h2>
+    <div className="stats">
+      <h2>Stats</h2>
+      <h3>Wins: 10</h3>
+      <h3>lose: 10</h3>
+      <h3>current round</h3>
+      <h3>Score</h3>
     </div>
   );
 };

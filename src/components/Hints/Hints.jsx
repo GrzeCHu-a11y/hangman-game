@@ -3,13 +3,13 @@ import React from "react";
 const Hints = ({ mistakes, hint }) => {
   return (
     <div>
-      <h3>
+      <h3 className="hint">
         Hint: <span>{hint}</span>
       </h3>
       <br />
-      <h3>
+      {/* <h3>
         Inccorect guesses: <span className="red-word">{mistakes}/6</span>
-      </h3>
+      </h3> */}
     </div>
   );
 };
