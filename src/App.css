@@ -22,6 +22,17 @@ body {
     border-radius: 20px;
     padding: 20px 20px;
 }
+/* desktop */
+@media screen and (min-width: 600px) {
+    .container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    }
+  }
+/* desktop */
+
 
 .hangman-img-container {
     width: 100%;
@@ -52,8 +63,17 @@ img {
 
 .stats {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    gap: 10px;
+    align-items: first baseline;
 }
+/* desktop */
+@media screen and (min-width: 600px) {
+    .stats {
+        flex-direction: row;
+    }
+  }
+/* desktop */
 
 .word-display {
     width: 100%;
