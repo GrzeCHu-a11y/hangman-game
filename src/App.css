@@ -72,6 +72,10 @@ img {
     .stats {
         flex-direction: row;
     }
+
+    .keyboard {
+        width: 50%;
+    }
   }
 /* desktop */
 

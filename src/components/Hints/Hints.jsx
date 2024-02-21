@@ -1,15 +1,11 @@
 import React from "react";
 
-const Hints = ({ mistakes, hint }) => {
+const Hints = ({ hint }) => {
   return (
     <div>
       <h3 className="hint">
         Hint: <span>{hint}</span>
       </h3>
-      <br />
-      {/* <h3>
-        Inccorect guesses: <span className="red-word">{mistakes}/6</span>
-      </h3> */}
     </div>
   );
 };

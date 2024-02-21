@@ -1,13 +1,15 @@
 import React from "react";
 
-const Stats = () => {
+const Stats = ({ score, guessedWords, round, mistakes }) => {
   return (
     <div className="stats">
       <h2>Stats</h2>
-      <h3>Wins: 10</h3>
-      <h3>lose: 10</h3>
-      <h3>current round</h3>
-      <h3>Score</h3>
+      <h3>GuessedWords: {guessedWords}</h3>
+      <h3>
+        Mistakes: <span className="red-word">{mistakes}</span>
+      </h3>
+      <h3>Current round: {round}</h3>
+      <h3>Score: {score}</h3>
     </div>
   );
 };

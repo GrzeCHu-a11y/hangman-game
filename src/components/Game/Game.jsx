@@ -12,9 +12,11 @@ const Game = () => {
   const [data, setData] = useState({
     word: "",
     hint: "",
-    wins: 0,
+    guessedWords: 0,
     mistakes: 0,
     hangamnImg: 0,
+    score: 0,
+    round: 1,
     pressedLetters: [],
     missingLetters: [],
     disabledButtons: [],
@@ -22,7 +24,6 @@ const Game = () => {
 
   const getRandomWord = () => {
     const { word, hint } = wordList[Math.floor(Math.random() * wordList.length)];
-
     //set missing letters
     const missingLetters = word
       .split("")
@@ -58,16 +59,23 @@ const Game = () => {
 
       //do it when allMissingLettersIsPressed
       if (allMissingLettersInPressed) {
-        data.wins += 1;
-        resetData();
+        data.guessedWords += 1;
+        data.score += 200;
+        data.round += 1;
+
+        //clear after word is correct
+        data.disabledButtons = [];
+        data.missingLetters = [];
+        data.pressedLetters = [];
+        data.mistakes = 0;
+        data.hangamnImg = 0;
         getRandomWord();
       }
 
       //do it when misatkes is more than 6
       if (data.mistakes === 6) {
-        data.wins = 0;
+        data.guessedWords = 0;
         setPopup(true);
-        console.log(popupVisible);
       }
     }
   }, [data.pressedLetters]);
@@ -77,9 +85,12 @@ const Game = () => {
       ...prevState,
       pressedLetters: [],
       missingLetters: [],
+      disabledButtons: [],
       mistakes: 0,
       hangamnImg: 0,
-      disabledButtons: [],
+      guessedWords: 0,
+      round: 0,
+      score: 0,
     }));
   };
 
@@ -99,7 +110,7 @@ const Game = () => {
         <Keyboard fun={getPressedLetter} disabledButtons={data.disabledButtons} />
       </div>
       <div className="stats-container">
-        <Stats />
+        <Stats guessedWords={data.guessedWords} mistakes={data.mistakes} round={data.round} score={data.score} />
       </div>
     </div>
   );
