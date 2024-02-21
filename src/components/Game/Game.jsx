@@ -5,15 +5,18 @@ import Keyboard from "../Keyboard/Keyboard";
 import Hints from "../Hints/Hints";
 import Popup from "../Popup/Popup";
 import { wordList } from "../../words/wordList";
+import Stats from "../Stats/Stats";
 
 const Game = () => {
   const [popupVisible, setPopup] = useState(false);
   const [data, setData] = useState({
     word: "",
     hint: "",
-    wins: 0,
+    guessedWords: 0,
     mistakes: 0,
     hangamnImg: 0,
+    score: 0,
+    round: 1,
     pressedLetters: [],
     missingLetters: [],
     disabledButtons: [],
@@ -21,7 +24,6 @@ const Game = () => {
 
   const getRandomWord = () => {
     const { word, hint } = wordList[Math.floor(Math.random() * wordList.length)];
-
     //set missing letters
     const missingLetters = word
       .split("")
@@ -57,28 +59,39 @@ const Game = () => {
 
       //do it when allMissingLettersIsPressed
       if (allMissingLettersInPressed) {
-        data.wins += 1;
-        resetData();
+        data.guessedWords += 1;
+        data.score += 200;
+        data.round += 1;
+
+        //clear after word is correct
+        data.disabledButtons = [];
+        data.missingLetters = [];
+        data.pressedLetters = [];
+        data.mistakes = 0;
+        data.hangamnImg = 0;
         getRandomWord();
       }
 
       //do it when misatkes is more than 6
       if (data.mistakes === 6) {
-        data.wins = 0;
+        data.guessedWords = 0;
         setPopup(true);
-        console.log(popupVisible);
       }
     }
   }, [data.pressedLetters]);
 
+  //hard reset after lose
   const resetData = () => {
     setData((prevState) => ({
       ...prevState,
       pressedLetters: [],
       missingLetters: [],
+      disabledButtons: [],
       mistakes: 0,
       hangamnImg: 0,
-      disabledButtons: [],
+      guessedWords: 0,
+      round: 0,
+      score: 0,
     }));
   };
 
@@ -89,13 +102,16 @@ const Game = () => {
   return (
     <div className="container">
       {popupVisible === true ? <Popup word={data.word} resetData={resetData} setPopup={setPopup} getRandomWord={getRandomWord} /> : ""}
-      <div>
+      <div className="hangman-img-container">
         <Hangman imgNum={data.hangamnImg} />
       </div>
-      <div>
+      <div className="words-container">
         <WordDisplay missingLetters={data.missingLetters} word={data.word} pressedLetters={data.pressedLetters} />
         <Hints mistakes={data.mistakes} hint={data.hint} />
         <Keyboard fun={getPressedLetter} disabledButtons={data.disabledButtons} />
+      </div>
+      <div className="stats-container">
+        <Stats guessedWords={data.guessedWords} mistakes={data.mistakes} round={data.round} score={data.score} />
       </div>
     </div>
   );

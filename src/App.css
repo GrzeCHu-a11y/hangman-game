@@ -1,48 +1,110 @@
-* {
+*, html {
     box-sizing: border-box;
     padding: 0;
     margin: 0;
 }
 
 body {
-    background-color: rgb(221, 221, 57);
     display: flex;
-    align-items: center;
     justify-content: center;
-    min-height: 100vh;
+    align-items: center;
+    height: auto;
+    margin: 0;
+    padding: 0;
+    background-image: url("/public/bullseye-gradient.svg");
+    background-size: cover;
+    background-position: center;
 }
 
 .container {
-    width: 70vw;
-    height: 80vh;
+    width: 90vw;
+    height: auto;
     background-color: rgb(243, 255, 255);
     border-radius: 20px;
-    display: flex;
-    align-items: center;
-    padding: 60px 40px;
-    gap: 70px;
+    padding: 20px 20px;
+}
+/* desktop */
+@media screen and (min-width: 600px) {
+    .container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    }
+  }
+/* desktop */
+
+
+.hangman-img-container {
+    width: 100%;
+    height: auto;
+    text-align: center;
 }
 
+img {
+    width: 200px;
+    height: auto;
+    object-fit: contain;
+} 
+
+.words-container {
+    width: 100%;
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0;
+}
+
+.stats-container {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.stats {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: first baseline;
+}
+/* desktop */
+@media screen and (min-width: 600px) {
+    .stats {
+        flex-direction: row;
+    }
+
+    .keyboard {
+        width: 50%;
+    }
+  }
+/* desktop */
+
 .word-display {
+    width: 100%;
     list-style-type: none;
     display: flex;
     gap: 10px;
-    padding: 30px 0;
-    text-align: center;
+    padding: 20px 0;
     text-transform: uppercase;
     font-size: 2rem;
 }
 
+.hint {
+    font-weight: 400;
+}
+
 .keyboard {
     display: flex;
-    flex-direction: row;
     flex-wrap: wrap;
     gap: 10px;
-    padding: 30px 0;
+    justify-content: center;
+    align-items: center; 
+    padding: 20px 0;
 }
 
 .kb-btn {
-    font-size: 1.3rem;
+    font-size: 1rem;
     padding: 8px;
     background-color: rgb(243, 255, 255);
     border: 2px solid black;
@@ -50,19 +112,19 @@ body {
 }
 
 .popup {
-    width: 70vw;
-    height: 80vh;
+    width: 100vw;
+    height: auto;
     position: absolute;
     top: 50%;
     left: 50%;
-    border-radius: 20px;
     display: flex;
+    text-align: center;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     padding: 60px 40px;
     transform: translate(-50%, -50%);
-    background-color: rgb(243, 255, 255);
+    background-color: rgba(243, 255, 255, 0.9);
 }
 
 .red-word {
@@ -75,4 +137,4 @@ body {
     background-color: rgb(221, 221, 57);
     border: 2px solid black;
     cursor: pointer;
-}
+} 
