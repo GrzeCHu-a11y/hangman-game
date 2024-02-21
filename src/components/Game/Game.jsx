@@ -80,6 +80,7 @@ const Game = () => {
     }
   }, [data.pressedLetters]);
 
+  //hard reset after lose
   const resetData = () => {
     setData((prevState) => ({
       ...prevState,
